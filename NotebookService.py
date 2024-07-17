@@ -117,3 +117,6 @@ def main():
             break
         else:
             print("Неверная команда.")
+
+if __name__ == "__main__":
+    main()
