@@ -89,3 +89,11 @@ def edit_note():
         print("Заметка успешно отредактирована.")
     else:
         print("Заметка с таким ID не найдена.")
+
+"""Это функция удаляет существующую заметку."""
+def delete_note():
+    notes = load_notes()
+    note_id = input("Введите ID заметки для удаления: ")
+    notes = [note for note in notes if note["id"] != note_id]
+    save_notes(notes)
+    print("Заметка успешно удалена.")
