@@ -60,7 +60,6 @@ def read_notes():
 
 """Это функция читает заметки по дате."""
 def read_notes_by_date():
-    """Читает заметки по дате."""
     notes = load_notes()
     date_str = input("Введите дату (YYYY-MM-DD): ")
     filtered_notes = [note for note in notes if date_str in note["timestamp"]]
@@ -97,26 +96,3 @@ def delete_note():
     notes = [note for note in notes if note["id"] != note_id]
     save_notes(notes)
     print("Заметка успешно удалена.")
-
-
-def main():
-    while True:
-        command = input("Введите команду (add, read, read_date, edit, delete, exit): ")
-
-        if command == "add":
-            add_note()
-        elif command == "read":
-            read_notes()
-        elif command == "read_date":
-            read_notes_by_date()
-        elif command == "edit":
-            edit_note()
-        elif command == "delete":
-            delete_note()
-        elif command == "exit":
-            break
-        else:
-            print("Неверная команда.")
-
-if __name__ == "__main__":
-    main()
