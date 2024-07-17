@@ -73,3 +73,19 @@ def read_notes_by_date():
             print("-" * 20)
     else:
         print("Заметок на эту дату нет.")
+
+"""Это функция редактирует существующую заметку."""
+def edit_note():
+    notes = load_notes()
+    note_id = input("Введите ID заметки для редактирования: ")
+    note = next((note for note in notes if note["id"] == note_id), None)
+    if note:
+        title = input(f"Введите новый заголовок (текущий: {note['title']}): ")
+        content = input(f"Введите новое тело (текущее: {note['content']}): ")
+        note["title"] = title
+        note["content"] = content
+        note["timestamp"] = datetime.datetime.now().isoformat()
+        save_notes(notes)
+        print("Заметка успешно отредактирована.")
+    else:
+        print("Заметка с таким ID не найдена.")
