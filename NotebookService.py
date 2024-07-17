@@ -11,7 +11,7 @@ def load_notes():
             return json.load(file)
     return []
 
-"""Генерирует уникальный идентификатор для заметки."""
+"""Это функция генерирует уникальный идентификатор для заметки."""
 def generate_id():
     if os.path.exists(NOTES_FILE):
         with open(NOTES_FILE, "r") as f:
@@ -19,3 +19,13 @@ def generate_id():
             last_id = max([int(note["id"]) for note in notes])
             return str(last_id + 1)
     return "1"
+
+"""Это функция cоздает новую заметку."""
+def create_note(title, content):
+    note = {
+        "id": generate_id(),
+        "title": title,
+        "content": content,
+        "timestamp": datetime.datetime.now().isoformat()
+    }
+    return note
