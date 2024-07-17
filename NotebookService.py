@@ -44,3 +44,32 @@ def add_note():
     notes.append(note)
     save_notes(notes)
     print("Заметка успешно сохранена.")
+
+"""Это функция читает все заметки."""
+def read_notes():
+    notes = load_notes()
+    if notes:
+        for note in notes:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['content']}")
+            print(f"Дата создания: {note['timestamp']}")
+            print("-" * 20)
+    else:
+        print("Заметок нет.")
+
+"""Это функция читает заметки по дате."""
+def read_notes_by_date():
+    """Читает заметки по дате."""
+    notes = load_notes()
+    date_str = input("Введите дату (YYYY-MM-DD): ")
+    filtered_notes = [note for note in notes if date_str in note["timestamp"]]
+    if filtered_notes:
+        for note in filtered_notes:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['content']}")
+            print(f"Дата создания: {note['timestamp']}")
+            print("-" * 20)
+    else:
+        print("Заметок на эту дату нет.")
