@@ -29,3 +29,18 @@ def create_note(title, content):
         "timestamp": datetime.datetime.now().isoformat()
     }
     return note
+
+"""Это функция cохраняет заметки в файл."""
+def save_notes(notes):
+    with open(NOTES_FILE, "w") as f:
+        json.dump(notes, f, indent=4)
+
+"""Это функция добавляет новую заметку."""
+def add_note():
+    title = input("Введите заголовок заметки: ")
+    content = input("Введите тело заметки: ")
+    note = create_note(title, content)
+    notes = load_notes()
+    notes.append(note)
+    save_notes(notes)
+    print("Заметка успешно сохранена.")
